@@ -1,7 +1,6 @@
 package com.test.tyro;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,8 +19,8 @@ public class TyroApplication {
 
 	@Bean
 	CommandLineRunner runner(UserRepository userRepository){
-		System.out.println("im doing things");
 		return args -> {
+			System.out.println("im doing things :D");
 			User user = new User();
 			user.setName("Adam");
 
