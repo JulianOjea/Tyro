@@ -1,0 +1,12 @@
+<div class="p-6 flex flex-column justify-content-center align-items-center">
+  <items-searchbox
+    placeholder="Search book..."
+    (onSearchInput)="searchBooks($event)"
+  ></items-searchbox>
+
+  <div class="grid mb-8 pt-6">
+    <div *ngFor="let book of books" class="col-3 sm:col-12 md:col-6 xl:col-3">
+      <items-book-card [book]="book"></items-book-card>
+    </div>
+  </div>
+</div>

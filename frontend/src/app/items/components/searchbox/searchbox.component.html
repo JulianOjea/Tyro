@@ -1,0 +1,10 @@
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input
+    type="text"
+    pInputText
+    [placeholder]="placeholder"
+    (keyup.enter)="onSearch(searchInput.value)"
+    #searchInput
+  />
+</span>
