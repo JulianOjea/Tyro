@@ -1,0 +1,9 @@
+<p-card [header]="book.volumeInfo.title | adaptBookTitle">
+  <ng-template pTemplate="header">
+    <img alt="Card" [src]="book.volumeInfo.imageLinks?.thumbnail" />
+  </ng-template>
+  <p><strong>Author: </strong> {{ book.volumeInfo.authors }}</p>
+  <ng-template pTemplate="footer">
+    <p-button label="More info"></p-button>
+  </ng-template>
+</p-card>
