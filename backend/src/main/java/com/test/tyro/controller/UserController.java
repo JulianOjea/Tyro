@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -30,6 +31,17 @@ public class UserController {
 		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 
+	@GetMapping("/users/{id}")
+	public ResponseEntity<?> getMethodName(@PathVariable("id") long id) {
+		Optional<User> userOp = userService.findById(id);
+		if(userOp.isPresent()){
+			User user = userOp.orElseThrow();
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return ResponseEntity.notFound().build();
+	}
+	
+
 	@PostMapping("/users")
 	public ResponseEntity<?> createUser(@RequestBody User user){
 		if(user.getName() == null || user.getName().isEmpty()){
@@ -39,7 +51,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<?> deleteProduct(@PathVariable Long id){
+	public ResponseEntity<?> deleteUser(@PathVariable Long id){
 		Optional<User> userOp = userService.findById(id);
 		if(userOp.isPresent()){
 			User user = userOp.orElseThrow();
