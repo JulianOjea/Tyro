@@ -35,7 +35,7 @@ public class Item {
         this.creation_date = creation_date;
     }
 
-    private Item(){
+    protected Item(){
 
     }
 

@@ -21,7 +21,8 @@ public class UserTests {
     @Autowired
     UserService service;
 
-    @Test void should_be_empty_database(){
+    @Test 
+    void should_be_empty_database(){
         List<User> userList = service.findAll();
 
         assertThat(userList.size()).isEqualTo(0);

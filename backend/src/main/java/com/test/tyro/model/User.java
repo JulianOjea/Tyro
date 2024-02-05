@@ -25,7 +25,7 @@ public class User {
         this.name = name;
     }
 
-    private User() {
+    protected User() {
     }
 
     public Long getId() {

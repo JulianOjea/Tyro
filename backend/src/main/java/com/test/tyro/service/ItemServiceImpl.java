@@ -1,5 +1,6 @@
 package com.test.tyro.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class ItemServiceImpl implements ItemService{
             item.setUser(user);
             return itemRepository.save(item);
         }).orElseThrow();
+    }
+
+    @Override
+    public List<Item> findByUserId(Long userID) {
+        return itemRepository.findByUserId(userID);
     }
     
 }
