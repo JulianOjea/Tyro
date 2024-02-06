@@ -2,6 +2,8 @@ package com.test.tyro.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Item {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="user_id", nullable=false)
+    @JsonIgnore
     private User user;
 
     public Item(double rating, String api_ID, LocalDate creation_date) {
