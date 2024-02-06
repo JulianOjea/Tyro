@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+//Only mutable field is rating
 @Entity
 @Table(name="item")
 public class Item {
@@ -34,6 +35,12 @@ public class Item {
         this.api_ID = api_ID;
         this.creation_date = creation_date;
     }
+
+    public Item(Item item, User user){
+        this(item.rating, item.api_ID, item.creation_date);
+        this.user = user;
+    }
+
 
     protected Item(){
 
@@ -61,9 +68,5 @@ public class Item {
 
     public User getUser() {
         return user;
-    }
-    
-    public void setUser(User user){
-        this.user = user;
     }
 }

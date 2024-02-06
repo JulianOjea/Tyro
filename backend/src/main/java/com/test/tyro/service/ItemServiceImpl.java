@@ -25,14 +25,42 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public Item save(Item item, Long userId) {
         return userRepository.findById(userId).map(user -> { 
-            item.setUser(user);
-            return itemRepository.save(item);
+            Item newItem = new Item(item, user);
+            return itemRepository.save(newItem);
         }).orElseThrow();
     }
 
     @Override
     public List<Item> findByUserId(Long userID) {
         return itemRepository.findByUserId(userID);
+    }
+
+    @Override
+    public Optional<Item> findById(Long id) {
+        return itemRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Item> delete(Item item) {
+        Optional<Item> itemOP = itemRepository.findById(item.getId());
+
+        itemOP.ifPresent(u->{
+            itemRepository.delete(item);
+        });
+        return itemOP;
+
+    }
+
+    //Maybe id should come as path variable? !!
+    @Override
+    public Optional<Item> update(Item item) {
+        Optional<Item> itemToUpdate = itemRepository.findById(item.getId());
+
+        if (itemToUpdate.isPresent()){
+            itemToUpdate.get().setRating(item.getRating());
+            return Optional.of(itemRepository.save(itemToUpdate.get()));
+        }
+        return itemToUpdate;
     }
     
 }
